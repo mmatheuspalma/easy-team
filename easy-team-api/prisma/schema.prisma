@@ -1,0 +1,47 @@
+// schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  email       String        @unique
+  password    String
+  role        Role          @relation(fields: [roleId], references: [id])
+  roleId      Int
+  location    Location      @relation(fields: [locationId], references: [id])
+  locationId  Int
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Role {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  description     String?
+  permissions     Permission[]      @relation("RolePermissions")
+
+  user User[]
+}
+
+model Permission {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  description     String?
+  roles           Role[]            @relation("RolePermissions")
+}
+
+model Location {
+  id              Int               @id @default(autoincrement())
+  name            String
+
+  user User[]
+}
