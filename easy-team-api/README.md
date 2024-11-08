@@ -44,3 +44,7 @@ npx ts-node src/server.ts
 ```shell
 npx prisma migrate reset
 ```
+
+### Endpoints documentation
+
+https://crimson-capsule-26634.postman.co/workspace/EasyTeam-API~c7563ddf-36af-4a33-9b64-2657ffdf1e80/collection/3136119-880f3b96-7534-40b3-a3d4-449dc9dd78e1?action=share&creator=3136119
